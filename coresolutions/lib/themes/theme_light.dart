@@ -6,100 +6,142 @@ import 'package:flutter/services.dart';
 //Pallete: https://coolors.co/db5461-686963-8aa29e-3d5467-f1edee
 
 Map<int, Color> primarySwatch = {
-  50: const Color(0xffFBEAEC),
-  100: const Color(0xffF4CCD0),
-  200: const Color(0xffEDAAB0),
-  300: const Color(0xffE68790),
-  400: const Color(0xffE06E79),
-  500: const Color(0xffDB5461),
-  600: const Color(0xffD74D59),
-  700: const Color(0xffD2434F),
-  800: const Color(0xffCD3A45),
-  900: const Color(0xffC42933),
+  0: const Color(0xff000000),
+  10: const Color(0xff001F29),
+  20: const Color(0xff003545),
+  30: const Color(0xff004D63),
+  40: const Color(0xff006783),
+  50: const Color(0xff0081A4),
+  60: const Color(0xff009DC6),
+  70: const Color(0xff3EB8E2),
+  80: const Color(0xff61D4FF),
+  90: const Color(0xffBCE9FF),
+  95: const Color(0xffDFF4FF),
+  99: const Color(0xffFAFCFF),
+  100: const Color(0xffFFFFFF)
 };
 
 Map<int, Color> secondarySwatch = {
-  50: const Color(0xffEDEDEC),
-  100: const Color(0xffD2D2D0),
-  200: const Color(0xffB4B4B1),
-  300: const Color(0xff959692),
-  400: const Color(0xff7F807A),
-  500: const Color(0xff686963),
-  600: const Color(0xff60615B),
-  700: const Color(0xff555651),
-  800: const Color(0xff4B4C47),
-  900: const Color(0xff3A3B35)
+  0: const Color(0xff000000),
+  10: const Color(0xff081E27),
+  20: const Color(0xff1E333C),
+  30: const Color(0xff354A53),
+  40: const Color(0xff4C616B),
+  50: const Color(0xff657A85),
+  60: const Color(0xff7E949F),
+  70: const Color(0xff99AFBA),
+  80: const Color(0xffB4CAD5),
+  90: const Color(0xffCFE6F2),
+  95: const Color(0xffDFF4FF),
+  99: const Color(0xffFAFCFF),
+  100: const Color(0xffFFFFFF)
+};
+Map<int, Color> tertiarySwatch = {
+  0: const Color(0xff000000),
+  10: const Color(0xff331200),
+  20: const Color(0xff542200),
+  30: const Color(0xff773300),
+  40: const Color(0xff974811),
+  50: const Color(0xffB66029),
+  60: const Color(0xffD6783F),
+  70: const Color(0xffF69257),
+  80: const Color(0xffFFB68E),
+  90: const Color(0xffFFDBCA),
+  95: const Color(0xffFFEDE5),
+  99: const Color(0xffFFFBFF),
+  100: const Color(0xffFFFFFF)
 };
 
 Map<int, Color> errorSwatch = {
-  50: const Color(0xffFEEAE9),
-  100: const Color(0xffFCC1BD),
-  200: const Color(0xffFA9891),
-  300: const Color(0xffF76E64),
-  400: const Color(0xffF54538),
-  500: const Color(0xffF31B0C),
-  600: const Color(0xffDE190B),
-  700: const Color(0xffC7160A),
-  800: const Color(0xff9B1108),
-  900: const Color(0xff6E0C05)
+  0: const Color(0xff000000),
+  10: const Color(0xff410002),
+  20: const Color(0xff690005),
+  30: const Color(0xff93000A),
+  40: const Color(0xffBA1A1A),
+  50: const Color(0xffDE3730),
+  60: const Color(0xffFF5449),
+  70: const Color(0xffFF897D),
+  80: const Color(0xffFFB4AB),
+  90: const Color(0xffFFDAD6),
+  95: const Color(0xffFFEDEA),
+  99: const Color(0xffFFFBFF),
+  100: const Color(0xffFFFFFF)
 };
 
-Map<int, Color> accentSwatch = {
-  50: const Color(0xffFFFBE8),
-  100: const Color(0xffFFF3B9),
-  200: const Color(0xffFFD98B),
-  300: const Color(0xffFFCA5D),
-  400: const Color(0xffFFBB2E),
-  500: const Color(0xffFFAC00),
-  600: const Color(0xffD1AE00),
-  700: const Color(0xffA28700),
-  800: const Color(0xff746000),
-  900: const Color(0xff463A00)
+Map<int, Color> neutralSwatch = {
+  0: const Color(0xff000000),
+  10: const Color(0xff191C1E),
+  20: const Color(0xff2E3132),
+  30: const Color(0xff444749),
+  40: const Color(0xff5C5F60),
+  50: const Color(0xff757779),
+  60: const Color(0xff8F9193),
+  70: const Color(0xffA9ABAD),
+  80: const Color(0xffC5C7C8),
+  90: const Color(0xffE1E2E4),
+  95: const Color(0xffEFF1F3),
+  99: const Color(0xffFAFCFF),
+  100: const Color(0xffFFFFFF)
 };
 
-var primaryColor = MaterialColor(primarySwatch[600]!.value, primarySwatch);
+Map<int, Color> neutralVariantSwatch = {
+  0: const Color(0xff000000),
+  10: const Color(0xff151D20),
+  20: const Color(0xff2A3235),
+  30: const Color(0xff40484C),
+  40: const Color(0xff586064),
+  50: const Color(0xff70787D),
+  60: const Color(0xff8A9296),
+  70: const Color(0xffA4ACB1),
+  80: const Color(0xffC0C8CC),
+  90: const Color(0xffDCE4E9),
+  95: const Color(0xffEAF2F7),
+  99: const Color(0xffFAFCFF),
+  100: const Color(0xffFFFFFF)
+};
 
-var secondaryColor =
-    MaterialColor(secondarySwatch[600]!.value, secondarySwatch);
+var primaryColor = MaterialColor(primarySwatch[40]!.value, primarySwatch);
 
-var tertiaryColor = MaterialColor(accentSwatch[500]!.value, accentSwatch);
+var secondaryColor = MaterialColor(secondarySwatch[40]!.value, secondarySwatch);
 
-var errorColor = MaterialColor(errorSwatch[600]!.value, errorSwatch);
+var tertiaryColor = MaterialColor(tertiaryColor[40]!.value, tertiarySwatch);
+
+var errorColor = MaterialColor(errorSwatch[40]!.value, errorSwatch);
 
 Color bodyBackground = const Color(0xffF1EDEE);
 Color black = const Color(0xff2f2f2f);
 
-final ThemeData themeLight = ThemeData(
-  scaffoldBackgroundColor: bodyBackground,
-  backgroundColor: primaryColor,
-  fontFamily: "Roboto",
-  primaryColor: primaryColor,
-  primarySwatch: primaryColor,
-  primaryColorDark: primaryColor.shade900,
-  primaryColorLight: primaryColor.shade300,
-  errorColor: errorColor,
-  colorScheme: ColorScheme(
+final ThemeData lightColorScheme = ThemeData(
+  colorScheme: const ColorScheme(
     brightness: Brightness.light,
-    primaryContainer: primaryColor,
-    secondaryContainer: secondaryColor,
-    tertiaryContainer: tertiaryColor,
-    errorContainer: errorColor,
-    onPrimaryContainer: Colors.white,
-    onSecondaryContainer: Colors.white,
-    onTertiaryContainer: black,
-    onErrorContainer: Colors.red,
-    primary: primaryColor,
-    onPrimary: Colors.white,
-    secondary: secondaryColor,
-    onSecondary: Colors.white,
-    tertiary: tertiaryColor,
-    onTertiary: black,
-    error: Colors.red,
-    onError: Colors.red,
-    background: bodyBackground,
-    onBackground: black,
-    surface: Colors.white,
-    onSurface: black,
+    primary: Color(0xFF006783),
+    onPrimary: Color(0xFFFFFFFF),
+    primaryContainer: Color(0xFFBDE9FF),
+    onPrimaryContainer: Color(0xFF001F2A),
+    secondary: Color(0xFF4D616C),
+    onSecondary: Color(0xFFFFFFFF),
+    secondaryContainer: Color(0xFFD0E6F2),
+    onSecondaryContainer: Color(0xFF081E27),
+    tertiary: Color(0xFF5D5B7D),
+    onTertiary: Color(0xFFFFFFFF),
+    tertiaryContainer: Color(0xFFE3DFFF),
+    onTertiaryContainer: Color(0xFF191836),
+    error: Color(0xFFBA1A1A),
+    errorContainer: Color(0xFFFFDAD6),
+    onError: Color(0xFFFFFFFF),
+    onErrorContainer: Color(0xFF410002),
+    background: Color(0xFFFBFCFE),
+    onBackground: Color(0xFF191C1E),
+    surface: Color(0xFFFBFCFE),
+    onSurface: Color(0xFF191C1E),
+    surfaceVariant: Color(0xFFDCE4E9),
+    onSurfaceVariant: Color(0xFF40484C),
+    outline: Color(0xFF70787D),
+    onInverseSurface: Color(0xFFEFF1F3),
+    inverseSurface: Color(0xFF2E3132),
+    inversePrimary: Color(0xFF64D3FF),
+    shadow: Color(0xFF000000),
+    surfaceTint: Color(0xFF006783),
   ),
   appBarTheme: AppBarTheme(
     systemOverlayStyle: const SystemUiOverlayStyle(

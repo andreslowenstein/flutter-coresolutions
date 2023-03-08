@@ -17,6 +17,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  flutter_bloc: ^8.1.2
+  bloc: ^8.1.1
+  equatable: ^2.0.5
 
 
 flutter:
@@ -27,3 +30,6 @@ flutter:
     androidX: true
     androidPackage: com.example.coresolutions
     iosBundleIdentifier: com.example.coresolutions
+
+  assets:
+    - assets/
