@@ -57,7 +57,11 @@ class Repository {
   }
 
   Future<Nature> createNature(
-      String code, String alias, String description, String token) async {
+    String code,
+    String alias,
+    String description,
+    String token,
+  ) async {
     try {
       dio.options.headers["Content-Type"] = "application/json";
       dio.options.headers["Accept"] = "application/json";
