@@ -41,7 +41,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       //Guardo el token en el localstorage
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('action', token);
+      await prefs.setString('token', token);
 
       emit(LoginLoadedState());
     } on DioError catch (e) {

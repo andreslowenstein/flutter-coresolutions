@@ -1,4 +1,5 @@
 import 'package:coresolutions/pages/login/bloc/login_bloc.dart';
+import 'package:coresolutions/pages/login/restore_password_page.dart';
 import 'package:coresolutions/pages/natures/natures_page.dart';
 import 'package:flutter/material.dart';
 
@@ -99,9 +100,10 @@ class LoginPage extends StatelessWidget {
                     height: 20,
                   ),
                   GestureDetector(
+                    onTap: (() => Navigator.pushNamed(
+                        context, RestorePasswordPage.route)),
                     child: Text(
                       "¿Has olvidado la contraseña?",
-                      //TODO HACER SCREEN
                       style: text.labelLarge!.copyWith(
                           color: color.primary, fontWeight: FontWeight.w500),
                     ),
@@ -184,8 +186,9 @@ class LoginForm extends StatelessWidget {
               borderSide: BorderSide(width: 1),
             ),
             labelText: "correo electrónico",
-            suffixIcon: GestureDetector(
-              child: const Icon(Icons.cancel_outlined),
+            suffixIcon: IconButton(
+              onPressed: _emailController.clear,
+              icon: const Icon(Icons.cancel_outlined),
             ),
           ),
         ),
@@ -194,6 +197,7 @@ class LoginForm extends StatelessWidget {
         ),
         TextFormField(
           controller: _passwordController,
+          obscureText: true,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(
               vertical: 20.0,
@@ -206,8 +210,9 @@ class LoginForm extends StatelessWidget {
               borderSide: BorderSide(width: 1),
             ),
             labelText: "contraseña",
-            suffixIcon: GestureDetector(
-              child: const Icon(Icons.cancel_outlined),
+            suffixIcon: IconButton(
+              onPressed: _passwordController.clear,
+              icon: const Icon(Icons.cancel_outlined),
             ),
           ),
         ),
@@ -253,8 +258,9 @@ class LoginFormError extends StatelessWidget {
               borderSide: BorderSide(width: 1),
             ),
             labelText: "correo electrónico",
-            suffixIcon: GestureDetector(
-              child: Icon(
+            suffixIcon: IconButton(
+              onPressed: _emailController.clear,
+              icon: Icon(
                 Icons.cancel_outlined,
                 color: color.error,
               ),
@@ -278,8 +284,9 @@ class LoginFormError extends StatelessWidget {
               borderSide: BorderSide(width: 1),
             ),
             labelText: "contraseña",
-            suffixIcon: GestureDetector(
-              child: Icon(
+            suffixIcon: IconButton(
+              onPressed: _passwordController.clear,
+              icon: Icon(
                 Icons.cancel_outlined,
                 color: color.error,
               ),

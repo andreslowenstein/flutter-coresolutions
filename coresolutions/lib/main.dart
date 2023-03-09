@@ -1,5 +1,6 @@
 import 'package:coresolutions/pages/login/bloc/login_bloc.dart';
 import 'package:coresolutions/pages/login/login_page.dart';
+import 'package:coresolutions/pages/natures/bloc/natures_bloc.dart';
 import 'package:coresolutions/repository/repository.dart';
 import 'package:coresolutions/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -19,20 +20,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: AppRoutes.routesArray,
-      theme: ThemeData(
-          useMaterial3: true, colorScheme: lightColorScheme.colorScheme),
-      darkTheme: ThemeData(
-          useMaterial3: true, colorScheme: darkColorScheme.colorScheme),
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider<LoginBloc>(
-            create: (BuildContext context) => LoginBloc(Repository()),
-          ),
-        ],
-        child: LoginPage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginBloc>(
+          create: (BuildContext context) => LoginBloc(Repository()),
+        ),
+        BlocProvider<NaturesBloc>(
+          create: (BuildContext context) => NaturesBloc(Repository()),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: AppRoutes.routesArray,
+        theme: ThemeData(
+            useMaterial3: true, colorScheme: lightColorScheme.colorScheme),
+        darkTheme: ThemeData(
+            useMaterial3: true, colorScheme: darkColorScheme.colorScheme),
+        home: LoginPage(),
       ),
     );
   }
