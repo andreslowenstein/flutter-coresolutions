@@ -1,6 +1,7 @@
 import 'package:coresolutions/UI/cs_textformfield.dart';
 import 'package:coresolutions/pages/natures_create/bloc/nature_create_bloc.dart';
 import 'package:coresolutions/pages/natures_list/natures_page.dart';
+import 'package:coresolutions/utils/responsive.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,6 +35,7 @@ class _NatureCreatePageState extends State<NatureCreatePage> {
   Widget build(BuildContext context) {
     var color = Theme.of(context).colorScheme;
     var text = Theme.of(context).textTheme;
+    var responsive = Responsive.of(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -46,126 +48,131 @@ class _NatureCreatePageState extends State<NatureCreatePage> {
           "assets/coreinvent.png",
         ),
       ),
-      body: BlocBuilder<NatureCreateBloc, NatureCreateState>(
-          builder: (context, state) {
-        if (state is NatureCreateInitial) {
-          return Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Crear naturaleza",
-                  style: text.titleLarge!.copyWith(color: color.primary),
-                ),
-                Column(
+      body: Center(
+        child: Container(
+          constraints: BoxConstraints(maxWidth: responsive.isWeb ? 450 : 600),
+          child: BlocBuilder<NatureCreateBloc, NatureCreateState>(
+              builder: (context, state) {
+            if (state is NatureCreateInitial) {
+              return Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    Text(
+                      "Crear naturaleza",
+                      style: text.titleLarge!.copyWith(color: color.primary),
+                    ),
+                    Column(
                       children: [
-                        Expanded(
-                          flex: 5,
-                          child: CSTextFormField(
-                            controller: _codeContoller,
-                            hint: "código",
-                            error: false,
-                            onPressed: () {
-                              _codeContoller.clear();
-                            },
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Expanded(
+                              flex: 5,
+                              child: CSTextFormField(
+                                controller: _codeContoller,
+                                hint: "código",
+                                error: false,
+                                onPressed: () {
+                                  _codeContoller.clear();
+                                },
+                              ),
+                            ),
+                            Expanded(flex: 1, child: Container()),
+                            Expanded(
+                              flex: 8,
+                              child: CSTextFormField(
+                                controller: _aliasController,
+                                hint: "alias",
+                                error: false,
+                                onPressed: () {
+                                  _aliasController.clear();
+                                },
+                              ),
+                            ),
+                          ],
                         ),
-                        Expanded(flex: 1, child: Container()),
-                        Expanded(
-                          flex: 8,
-                          child: CSTextFormField(
-                            controller: _aliasController,
-                            hint: "alias",
-                            error: false,
-                            onPressed: () {
-                              _aliasController.clear();
-                            },
-                          ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CSTextFormField(
+                          controller: _descriptionController,
+                          hint: "descripción",
+                          error: false,
+                          onPressed: () {
+                            _descriptionController.clear();
+                          },
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    CSTextFormField(
-                      controller: _descriptionController,
-                      hint: "descripción",
-                      error: false,
-                      onPressed: () {
-                        _descriptionController.clear();
-                      },
+                    SizedBox(
+                      width: double.infinity,
+                      height: 40,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          onPressed(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: color.primary),
+                        child: Text(
+                          "Crear",
+                          style: text.labelLarge!.copyWith(
+                            color: color.onPrimary,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  height: 40,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      onPressed(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: color.primary),
-                    child: Text(
-                      "Crear",
-                      style: text.labelLarge!.copyWith(
-                        color: color.onPrimary,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        }
-        if (state is NatureCreateLoadingState) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        if (state is NatureCreateLoadedState) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            QuickAlert.show(
-              context: context,
-              type: QuickAlertType.success,
-              title: "",
-              text: 'Creada correctamente',
-              confirmBtnColor: color.primary,
-              barrierColor: color.primary,
-              confirmBtnText: "ir al inicio",
-              onConfirmBtnTap: () {
-                BlocProvider.of<NatureCreateBloc>(context)
-                    .add(const GoBackEvent());
-                Navigator.pushReplacementNamed(context, NaturesPage.route);
-              },
-            );
-          });
-        }
-        if (state is NatureCreateErrorState) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            QuickAlert.show(
-              context: context,
-              type: QuickAlertType.error,
-              title: "",
-              text: state.errorMsg,
-              confirmBtnColor: color.primary,
-              barrierColor: color.primary,
-              confirmBtnText: "ir al inicio",
-              onConfirmBtnTap: () {
-                BlocProvider.of<NatureCreateBloc>(context)
-                    .add(const GoBackEvent());
-                Navigator.pushReplacementNamed(context, NaturesPage.route);
-              },
-            );
-          });
-        }
-        return Container();
-      }),
+              );
+            }
+            if (state is NatureCreateLoadingState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (state is NatureCreateLoadedState) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                QuickAlert.show(
+                  context: context,
+                  type: QuickAlertType.success,
+                  title: "",
+                  text: 'Creada correctamente',
+                  confirmBtnColor: color.primary,
+                  barrierColor: color.primary,
+                  confirmBtnText: "ir al inicio",
+                  onConfirmBtnTap: () {
+                    BlocProvider.of<NatureCreateBloc>(context)
+                        .add(const GoBackEvent());
+                    Navigator.pushReplacementNamed(context, NaturesPage.route);
+                  },
+                );
+              });
+            }
+            if (state is NatureCreateErrorState) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                QuickAlert.show(
+                  context: context,
+                  type: QuickAlertType.error,
+                  title: "",
+                  text: state.errorMsg,
+                  confirmBtnColor: color.primary,
+                  barrierColor: color.primary,
+                  confirmBtnText: "ir al inicio",
+                  onConfirmBtnTap: () {
+                    BlocProvider.of<NatureCreateBloc>(context)
+                        .add(const GoBackEvent());
+                    Navigator.pushReplacementNamed(context, NaturesPage.route);
+                  },
+                );
+              });
+            }
+            return Container();
+          }),
+        ),
+      ),
     );
   }
 }
