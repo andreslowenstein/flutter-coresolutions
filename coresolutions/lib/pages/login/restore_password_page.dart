@@ -1,3 +1,4 @@
+import 'package:coresolutions/UI/cs_textformfield.dart';
 import 'package:flutter/material.dart';
 
 class RestorePasswordPage extends StatelessWidget {
@@ -66,25 +67,10 @@ class RestorePasswordPage extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  TextFormField(
+                  CSTextFormField(
                     controller: _emailController,
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                        vertical: 20.0,
-                        horizontal: 10.0,
-                      ),
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: .5),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 1),
-                      ),
-                      labelText: "correo electrónico",
-                      suffixIcon: IconButton(
-                        onPressed: _emailController.clear,
-                        icon: const Icon(Icons.cancel_outlined),
-                      ),
-                    ),
+                    error: false,
+                    hint: "correo electrónico",
                   ),
                   const SizedBox(
                     height: 20,

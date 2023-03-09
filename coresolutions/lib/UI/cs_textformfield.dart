@@ -1,50 +1,60 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// class CSTextFormField extends StatelessWidget {
-//   const CSTextFormField({
-//     super.key,
-//     this.hint,
-//     this.suffixIcon,
-//     this.prefixIcon,
-//     this.validator,
-//     this.controller,
-//     this.onSaved,
-//   });
+//Componente reciclable de textformfield
+class CSTextFormField extends StatelessWidget {
+  const CSTextFormField({
+    super.key,
+    this.hint,
+    this.suffixIcon,
+    this.prefixIcon,
+    this.controller,
+    this.onPressed,
+    this.error,
+    this.obscureText,
+  });
 
-//   final String? hint;
-//   final Icon? suffixIcon;
-//   final Icon? prefixIcon;
-//   final String? Function(String?)? validator;
-//   final TextEditingController? controller;
-//   final Function(String?)? onSaved;
+  final String? hint;
+  final Icon? suffixIcon;
+  final Icon? prefixIcon;
+  final TextEditingController? controller;
+  final void Function()? onPressed;
+  final bool? error;
+  final bool? obscureText;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextFormField(
-//       validator: validator,
-//       onSaved: onSaved,
-//       controller: controller,
-//       key: key,
-//       style: Theme.of(context).textTheme.bodyMedium,
-//       decoration: InputDecoration(
-//         filled: true,
-//         fillColor: Theme.of(context).colorScheme.onPrimary,
-//         label: Text(
-//           '${this.placeHolder ?? ''}',
-//           textAlign: this.textAlign,
-//           style: this.placeHolderStyle ??
-//               Theme.of(context).inputDecorationTheme.labelStyle,
-//         ),
-//         prefixIcon: this.prefixIcon,
-//         suffixIcon: this.suffixIcon,
-//         enabledBorder: const OutlineInputBorder(
-//           borderSide:
-//               BorderSide(color: Color.fromARGB(255, 199, 199, 199), width: 1.5),
-//         ),
-//         focusedBorder: Theme.of(context).inputDecorationTheme.focusedBorder,
-//         disabledBorder: Theme.of(context).inputDecorationTheme.disabledBorder,
-//       ),
-//       inputFormatters: this.inputFormatters,
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      key: key,
+      style: Theme.of(context).textTheme.bodyMedium,
+      obscureText: obscureText ?? false,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 20.0,
+          horizontal: 10.0,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            width: .5,
+            color: error!
+                ? Theme.of(context).colorScheme.error
+                : Theme.of(context).colorScheme.primary,
+          ),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(width: 1),
+        ),
+        labelText: hint,
+        suffixIcon: IconButton(
+          onPressed: onPressed,
+          icon: Icon(
+            Icons.cancel_outlined,
+            color: error!
+                ? Theme.of(context).colorScheme.error
+                : Theme.of(context).colorScheme.primary,
+          ),
+        ),
+      ),
+    );
+  }
+}

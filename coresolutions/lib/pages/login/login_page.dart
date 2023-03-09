@@ -1,6 +1,7 @@
+import 'package:coresolutions/UI/cs_textformfield.dart';
 import 'package:coresolutions/pages/login/bloc/login_bloc.dart';
 import 'package:coresolutions/pages/login/restore_password_page.dart';
-import 'package:coresolutions/pages/natures/natures_page.dart';
+import 'package:coresolutions/pages/natures_list/natures_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,130 +24,128 @@ class LoginPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset("assets/coreinvent.png"),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "¡Hola!",
-                    style: text.headlineSmall,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Utiliza tus credenciales de usuario para acceder al sistema",
-                    style: text.bodyMedium,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Icon(Icons.language_outlined),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "Español",
-                        style: text.bodyMedium,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      GestureDetector(
-                        child: Text(
-                          "Cambiar",
-                          style: text.bodyMedium!.copyWith(
-                              color: color.primary,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  BlocBuilder<LoginBloc, LoginState>(
-                    builder: (context, state) {
-                      if (state is LoginErrorState) {
-                        return LoginFormError(
-                          emailController: _emailController,
-                          color: color,
-                          passwordController: _passwordController,
-                          text: text,
-                          errorMsg: state.errorMsg,
-                        );
-                      }
-                      if (state is LoginLoadedState) {
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          Navigator.pushNamed(context, NaturesPage.route);
-                        });
-                      }
-                      return LoginForm(
-                          emailController: _emailController,
-                          passwordController: _passwordController);
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  GestureDetector(
-                    onTap: (() => Navigator.pushNamed(
-                        context, RestorePasswordPage.route)),
-                    child: Text(
-                      "¿Has olvidado la contraseña?",
-                      style: text.labelLarge!.copyWith(
-                          color: color.primary, fontWeight: FontWeight.w500),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset("assets/coreinvent.png"),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "¡Hola!",
+                  style: text.headlineSmall,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Utiliza tus credenciales de usuario para acceder al sistema",
+                  style: text.bodyMedium,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Icon(Icons.language_outlined),
+                    const SizedBox(
+                      width: 5,
                     ),
+                    Text(
+                      "Español",
+                      style: text.bodyMedium,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                      child: Text(
+                        "Cambiar",
+                        style: text.bodyMedium!.copyWith(
+                            color: color.primary, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                BlocBuilder<LoginBloc, LoginState>(
+                  builder: (context, state) {
+                    if (state is LoginErrorState) {
+                      return LoginFormError(
+                        emailController: _emailController,
+                        color: color,
+                        passwordController: _passwordController,
+                        text: text,
+                        errorMsg: state.errorMsg,
+                      );
+                    }
+                    if (state is LoginLoadedState) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        Navigator.pushNamed(context, NaturesPage.route);
+                      });
+                    }
+                    return LoginForm(
+                        emailController: _emailController,
+                        passwordController: _passwordController);
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                GestureDetector(
+                  onTap: (() =>
+                      Navigator.pushNamed(context, RestorePasswordPage.route)),
+                  child: Text(
+                    "¿Has olvidado la contraseña?",
+                    style: text.labelLarge!.copyWith(
+                        color: color.primary, fontWeight: FontWeight.w500),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Si no dispones de una cuenta de usuario o tienes problemas para acceder, ponte en contacto con tu administrador.",
-                    style: text.bodySmall,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  BlocBuilder<LoginBloc, LoginState>(
-                    builder: (context, state) {
-                      if (state is LoginLoadingState) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      return SizedBox(
-                        width: double.infinity,
-                        height: 40,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            onPressed(context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: color.primary),
-                          child: Text(
-                            "Acceder",
-                            style: text.labelLarge!.copyWith(
-                              color: color.onPrimary,
-                              fontWeight: FontWeight.w500,
-                            ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Si no dispones de una cuenta de usuario o tienes problemas para acceder, ponte en contacto con tu administrador.",
+                  style: text.bodySmall,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                BlocBuilder<LoginBloc, LoginState>(
+                  builder: (context, state) {
+                    if (state is LoginLoadingState) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return SizedBox(
+                      width: double.infinity,
+                      height: 40,
+                      child: ElevatedButton(
+                        key: const ValueKey("continueBtn"),
+                        onPressed: () {
+                          onPressed(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: color.primary),
+                        child: Text(
+                          "Acceder",
+                          style: text.labelLarge!.copyWith(
+                            color: color.onPrimary,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                      );
-                    },
-                  )
-                ],
-              ),
+                      ),
+                    );
+                  },
+                )
+              ],
             ),
           ),
         ),
@@ -172,49 +171,23 @@ class LoginForm extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextFormField(
+        CSTextFormField(
+          key: const ValueKey("emailInput"),
           controller: _emailController,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: 20.0,
-              horizontal: 10.0,
-            ),
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(width: .5),
-            ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(width: 1),
-            ),
-            labelText: "correo electrónico",
-            suffixIcon: IconButton(
-              onPressed: _emailController.clear,
-              icon: const Icon(Icons.cancel_outlined),
-            ),
-          ),
+          hint: "correo electrónico",
+          onPressed: _emailController.clear,
+          error: false,
         ),
         const SizedBox(
           height: 20,
         ),
-        TextFormField(
+        CSTextFormField(
+          key: const ValueKey("passwordInput"),
           controller: _passwordController,
+          hint: "contraseña",
+          onPressed: _passwordController.clear,
+          error: false,
           obscureText: true,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: 20.0,
-              horizontal: 10.0,
-            ),
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(width: .5),
-            ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(width: 1),
-            ),
-            labelText: "contraseña",
-            suffixIcon: IconButton(
-              onPressed: _passwordController.clear,
-              icon: const Icon(Icons.cancel_outlined),
-            ),
-          ),
         ),
       ],
     );
@@ -244,54 +217,21 @@ class LoginFormError extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextFormField(
+        CSTextFormField(
           controller: _emailController,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: 20.0,
-              horizontal: 10.0,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 1, color: color.error),
-            ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(width: 1),
-            ),
-            labelText: "correo electrónico",
-            suffixIcon: IconButton(
-              onPressed: _emailController.clear,
-              icon: Icon(
-                Icons.cancel_outlined,
-                color: color.error,
-              ),
-            ),
-          ),
+          hint: "correo electrónico",
+          onPressed: _emailController.clear,
+          error: true,
         ),
         const SizedBox(
           height: 20,
         ),
-        TextFormField(
+        CSTextFormField(
           controller: _passwordController,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: 20.0,
-              horizontal: 10.0,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 1, color: color.error),
-            ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(width: 1),
-            ),
-            labelText: "contraseña",
-            suffixIcon: IconButton(
-              onPressed: _passwordController.clear,
-              icon: Icon(
-                Icons.cancel_outlined,
-                color: color.error,
-              ),
-            ),
-          ),
+          hint: "contraseña",
+          onPressed: _passwordController.clear,
+          error: true,
+          obscureText: true,
         ),
         const SizedBox(
           height: 5,
