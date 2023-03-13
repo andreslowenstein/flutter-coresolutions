@@ -13,7 +13,7 @@ class Responsive {
   double get height => _height;
   double get diagonal => _diagonal;
   bool get isTablet => _isTablet;
-  bool get isWeb => _isTablet;
+  bool get isWeb => _isWeb;
 
   static Responsive of(BuildContext context) => Responsive(context);
 

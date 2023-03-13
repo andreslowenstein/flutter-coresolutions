@@ -29,21 +29,22 @@ class CSTextFormField extends StatelessWidget {
       style: Theme.of(context).textTheme.bodyMedium,
       obscureText: obscureText ?? false,
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 20.0,
-          horizontal: 10.0,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: .5,
-            color: error!
-                ? Theme.of(context).colorScheme.error
-                : Theme.of(context).colorScheme.primary,
-          ),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(width: 1),
-        ),
+        border: const OutlineInputBorder(),
+        // contentPadding: const EdgeInsets.symmetric(
+        //   vertical: 20.0,
+        //   horizontal: 10.0,
+        // ),
+        // enabledBorder: OutlineInputBorder(
+        //   borderSide: BorderSide(
+        //     width: .5,
+        //     color: error!
+        //         ? Theme.of(context).colorScheme.error
+        //         : Theme.of(context).colorScheme.primary,
+        //   ),
+        // // ),
+        // focusedBorder: const OutlineInputBorder(
+        //   borderSide: BorderSide(width: 1),
+        // ),
         labelText: hint,
         suffixIcon: IconButton(
           onPressed: onPressed,

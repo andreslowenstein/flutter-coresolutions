@@ -1,17 +1,30 @@
+import 'dart:async';
+
 import 'package:coresolutions/pages/natures_create/natures_create_page.dart';
 import 'package:coresolutions/pages/natures_list/bloc/natures_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NaturesPage extends StatelessWidget {
+class NaturesPage extends StatefulWidget {
   const NaturesPage({super.key});
 
   static const String route = "natures-page";
 
   @override
+  State<NaturesPage> createState() => _NaturesPageState();
+}
+
+class _NaturesPageState extends State<NaturesPage> {
+  @override
+  void initState() {
+    scheduleMicrotask(() =>
+        BlocProvider.of<NaturesBloc>(context).add(const GetNaturesEvent()));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    BlocProvider.of<NaturesBloc>(context).add(const GetNaturesEvent());
     var color = Theme.of(context).colorScheme;
     var text = Theme.of(context).textTheme;
     return SafeArea(

@@ -2,6 +2,7 @@ import 'package:coresolutions/pages/login/bloc/login_bloc.dart';
 import 'package:coresolutions/pages/login/login_page.dart';
 import 'package:coresolutions/pages/natures_create/bloc/nature_create_bloc.dart';
 import 'package:coresolutions/pages/natures_list/bloc/natures_bloc.dart';
+import 'package:coresolutions/pages/natures_list/natures_page.dart';
 import 'package:coresolutions/repository/repository.dart';
 import 'package:coresolutions/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,14 @@ class MyApp extends StatelessWidget {
           useMaterial3: true, colorScheme: lightColorScheme.colorScheme),
       darkTheme: ThemeData(
           useMaterial3: true, colorScheme: darkColorScheme.colorScheme),
-      home: LoginPage(),
+      home: BlocBuilder<LoginBloc, LoginState>(
+        builder: (context, state) {
+          if (state is LoginLoadedState) {
+            return const NaturesPage();
+          }
+          return LoginPage();
+        },
+      ),
     );
   }
 }

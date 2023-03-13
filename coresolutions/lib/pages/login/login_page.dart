@@ -92,11 +92,6 @@ class LoginPage extends StatelessWidget {
                             errorMsg: state.errorMsg,
                           );
                         }
-                        if (state is LoginLoadedState) {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            Navigator.pushNamed(context, NaturesPage.route);
-                          });
-                        }
                         return LoginForm(
                             emailController: _emailController,
                             passwordController: _passwordController);
